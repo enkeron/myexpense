@@ -7,6 +7,8 @@ test = function (success, error) {
     ajaxCall('GET', 'rest/test/simple', null, success, error);
 };
 
+
+
 ajaxCall = function (type, url, data, success, error) {
     $.ajax({
         type: type,

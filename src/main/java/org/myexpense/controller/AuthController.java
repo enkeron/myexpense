@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.*;
 
 import javax.ws.rs.core.Context;
@@ -57,11 +58,11 @@ public class AuthController {
         LOG.error("login " + login + " password " + password);
 
         userId = authDao.authenticate(login, password);
-
+        HttpSession mySession = request.getSession();
         if (userId != 0) {
             request.getSession().setAttribute("userId", userId);
             LOG.info("Authenticated");
-            response.sendRedirect(request.getContextPath() + "/pages/dashboard.html");
+            response.sendRedirect(request.getContextPath() + "/dashboard.html");
         } else {
             LOG.info("Not authenticated");
             response.sendRedirect(request.getContextPath() + "/login.html?error=true");
