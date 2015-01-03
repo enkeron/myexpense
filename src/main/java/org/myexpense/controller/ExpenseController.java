@@ -31,12 +31,14 @@ public class ExpenseController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Expense> getAllExpense(@Context HttpServletRequest request) {
 //        LOG.debug(getUserId(request));
-        getUserId(request);
+//        getUserId(request);
 
-        List<Expense> list = jdbcHelper.getAllExpense(1);
+        List<Expense> products = jdbcHelper.getAllExpense(1);
         LOG.debug("getAllExpense is successfuly done.");
-        return list;
+        return products;
     }
+
+
     @Path("/user")
     @GET
     public void getUserIdFromSession(@Context HttpServletRequest request) {
